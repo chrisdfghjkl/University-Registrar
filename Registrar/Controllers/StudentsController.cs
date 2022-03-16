@@ -49,20 +49,36 @@ namespace Registrar.Controllers
       return View(thisStudent);
     }
 
+    //     public ActionResult Edit(int id)
+    // {
+    //   var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+    //   ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+    //   return View(thisItem);
+    // }
+
+    // [HttpPost]
+    // public ActionResult Edit(Item item)
+    // {
+    //   _db.Entry(item).State = EntityState.Modified;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
     public ActionResult Edit(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      // ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
       return View(thisStudent);
     }
 
     [HttpPost]
-    public ActionResult Edit(Student student, int CourseId)
+    // public ActionResult Edit(Student student, int CourseId)
+    public ActionResult Edit(Student student) //trial line
     {
-      if (CourseId != 0)
-      {
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
-      }
+      // if (CourseId != 0)
+      // {
+      //   _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+      // }
       _db.Entry(student).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
