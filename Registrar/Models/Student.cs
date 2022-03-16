@@ -11,6 +11,7 @@ namespace Registrar.Models
 
         public int StudentId { get; set; }
         public string Name { get; set; }
+        public DateTime Date { get; set; }
 
         public virtual ICollection<CourseStudent> JoinEntities { get;}
     }
