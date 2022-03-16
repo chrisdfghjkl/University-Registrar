@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Registrar.Models
 {
-  public class Course
+    public class Course
     {
         public Course()
         {
