@@ -34,6 +34,32 @@ namespace Registrar.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("Registrar.Models.CourseDepartmentStudent", b =>
+                {
+                    b.Property<int>("CourseDepartmentStudentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseDepartmentStudentId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CourseDepartmentStudent");
+                });
+
             modelBuilder.Entity("Registrar.Models.CourseStudent", b =>
                 {
                     b.Property<int>("CourseStudentId")
@@ -55,14 +81,28 @@ namespace Registrar.Migrations
                     b.ToTable("CourseStudent");
                 });
 
+            modelBuilder.Entity("Registrar.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("DepartmentId");
+
+                    b.ToTable("Department");
+                });
+
             modelBuilder.Entity("Registrar.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("Date")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -70,6 +110,29 @@ namespace Registrar.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Registrar.Models.CourseDepartmentStudent", b =>
+                {
+                    b.HasOne("Registrar.Models.Course", "Course")
+                        .WithMany("JoinEntities2")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Registrar.Models.Department", null)
+                        .WithMany("JoinEntities2")
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("Registrar.Models.Student", "Student")
+                        .WithMany("JoinEntities2")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Registrar.Models.CourseStudent", b =>
@@ -94,11 +157,20 @@ namespace Registrar.Migrations
             modelBuilder.Entity("Registrar.Models.Course", b =>
                 {
                     b.Navigation("JoinEntities");
+
+                    b.Navigation("JoinEntities2");
+                });
+
+            modelBuilder.Entity("Registrar.Models.Department", b =>
+                {
+                    b.Navigation("JoinEntities2");
                 });
 
             modelBuilder.Entity("Registrar.Models.Student", b =>
                 {
                     b.Navigation("JoinEntities");
+
+                    b.Navigation("JoinEntities2");
                 });
 #pragma warning restore 612, 618
         }
