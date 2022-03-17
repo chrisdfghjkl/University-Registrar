@@ -2,7 +2,9 @@
   Layout = "_Layout";
 }
 
+@using System.Linq;
 @using Registrar.Models;
+@model List<Registrar.Models.Course>
 
 <h1>Courses</h1>
 
@@ -12,9 +14,9 @@
 } 
 
 <ul>
-  @foreach(Course course in Model)
+  @foreach(Course course in Model.OrderBy(course => course.CourseNumber))
   {
-    <li>@Html.ActionLink($"{course.Name}", "Details", new { id = course.CourseId })</li>
+    <li>@Html.ActionLink($"{course.Name}", "Details", new { id = course.CourseId }) @Html.Raw(course.CourseNumber)</li>
   }
 </ul>
 
