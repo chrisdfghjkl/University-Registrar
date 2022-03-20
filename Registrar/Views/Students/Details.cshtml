@@ -7,7 +7,7 @@
 <h2>Student Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-
+<div>
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>This student is not enrolled in any courses</p>
@@ -27,9 +27,8 @@ else
   }
   </ul>
 }
-
+</div>
 <p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
-
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>

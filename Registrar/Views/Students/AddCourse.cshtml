@@ -6,8 +6,8 @@
 
 <h2>Add a course</h2>
 
-<h4>Add a course to this task: @Html.DisplayFor(model => model.Name)</h4>
-
+<h4>Add a course for this student: @Html.DisplayFor(model => model.Name)</h4>
+<div>
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.StudentId)
@@ -17,5 +17,5 @@
 
   <input type="submit" value="Save" />
 }
-
+</div>
 <p>@Html.ActionLink("Back to list", "Index")</p>

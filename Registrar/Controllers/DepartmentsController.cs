@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Registrar.Models;
@@ -39,6 +40,8 @@ namespace Registrar.Controllers
       var thisDepartment = _db.Department
         .Include(department => department.JoinEntities2)
         .ThenInclude(join => join.Course)
+        .Include(department => department.JoinEntities3)
+        .ThenInclude(join => join.Student)
         .FirstOrDefault(department => department.DepartmentId == id);
       return View(thisDepartment);
     }
@@ -53,6 +56,42 @@ namespace Registrar.Controllers
     {
       _db.Entry(department).State = EntityState.Modified;
       _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult AddCourse(int id)
+    {
+      var thisDepartment = _db.Department.FirstOrDefault(department => department.DepartmentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      return View(thisDepartment);
+    }
+
+    [HttpPost]
+    public ActionResult AddCourse(Department department, int CourseId)
+    {
+      if (CourseId != 0)
+      {
+        _db.CourseDepartment.Add(new CourseDepartment() { CourseId = CourseId, DepartmentId = department.DepartmentId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+        public ActionResult AddStudent(int id)
+    {
+      var thisDepartment = _db.Department.FirstOrDefault(department => department.DepartmentId == id);
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      return View(thisDepartment);
+    }
+
+    [HttpPost]
+    public ActionResult AddStudent(Department department, int StudentId)
+    {
+      if (StudentId != 0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() { StudentId = StudentId, DepartmentId = department.DepartmentId });
+        _db.SaveChanges();
+      }
       return RedirectToAction("Index");
     }
 

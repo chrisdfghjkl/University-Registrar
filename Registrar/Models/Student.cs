@@ -8,7 +8,7 @@ namespace Registrar.Models
         public Student()
         {
             this.JoinEntities = new HashSet<CourseStudent>();
-            this.JoinEntities2 = new HashSet<CourseDepartmentStudent>();
+            this.JoinEntities3 = new HashSet<DepartmentStudent>();
         }
 
         public int StudentId { get; set; }
@@ -16,6 +16,6 @@ namespace Registrar.Models
         public string Date { get; set; }
 
         public virtual ICollection<CourseStudent> JoinEntities { get;}
-        public virtual ICollection<CourseDepartmentStudent> JoinEntities2 { get; set; }
+        public virtual ICollection<DepartmentStudent> JoinEntities3 { get; set; }
     }
 }

@@ -3,8 +3,8 @@
 }
 
 @model Registrar.Models.Course
-<div>
 <h4>Add a new course</h4>
+<div>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
@@ -15,5 +15,5 @@
   <br>
   <input type="submit" value="Add new course" />
 }
-<div>
+</div>
 <p>@Html.ActionLink("Show all courses", "Index")</p>

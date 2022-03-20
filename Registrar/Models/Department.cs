@@ -6,10 +6,12 @@ namespace Registrar.Models
     {
         public Department()
         {
-            this.JoinEntities2 = new HashSet<CourseDepartmentStudent>();
+            this.JoinEntities2 = new HashSet<CourseDepartment>();
         }
         public int DepartmentId {get; set;}
         public string Name { get; set; }
-        public virtual ICollection<CourseDepartmentStudent> JoinEntities2 { get; }
+        public virtual ICollection<CourseDepartment> JoinEntities2 { get; }
+
+        public virtual ICollection<DepartmentStudent> JoinEntities3 {get; }
     }
 }

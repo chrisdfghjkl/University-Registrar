@@ -2,6 +2,7 @@ body {
 	background-image: url("https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80");
 	background-size: cover;
 	color:darkcyan;
+	
 }
 
 div, p, h1, h2, h3, h4 {
@@ -13,6 +14,7 @@ div, p, h1, h2, h3, h4 {
 	margin: auto;
 	margin-bottom: 5px;
 	text-align: center;
+	
 }
 
 div {
@@ -34,6 +36,6 @@ div#footer {
 	padding:8px;
 }
 
-.AddCourse {
-  text-align: center;
+.actionstyle {
+	list-style-type: none;
 }

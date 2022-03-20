@@ -6,22 +6,42 @@
 
 <h2>Department Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) [@Html.DisplayFor(model => model.CourseNumber)]</h3>
-
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<div>
 @if(@Model.JoinEntities2.Count == 0)
 {
   <p>This department does not contain any students or courses</p>
 }
 else
 {
-  <h4>Students the department contains:</h4>
+  <h4>Courses the department contains:</h4>
   <ul>
   @foreach(var join in Model.JoinEntities2)
+  {
+    <li>@join.Course.Name</li>
+  }
+  </ul>
+}
+</div>
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.DepartmentId })</p>
+
+<div>
+@if(@Model.JoinEntities3.Count == 0)
+{
+  <p>This department does not contain any students</p>
+}
+else
+{
+  <h4>Students the department contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities3)
   {
     <li>@join.Student.Name</li>
   }
   </ul>
 }
+</div>
+<p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.DepartmentId })</p>
 
 <p>@Html.ActionLink("Back to departments", "Index")</p>
 <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
